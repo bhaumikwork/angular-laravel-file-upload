@@ -44,6 +44,8 @@ class FilesController extends Controller {
 					'ext'			=>	$oUploadedFile->getClientOriginalExtension(),
 					'path'			=>	'/uploads'
 				]);
+		$oFile->url = action('FilesController@show',array($oFile->id));
+		unset($oFile->path);
 		return response()->json($oFile->toArray());
 	}
 

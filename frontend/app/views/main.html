@@ -1,23 +1,19 @@
-<div class="jumbotron">
-  <h1>'Allo, 'Allo!</h1>
-  <p class="lead">
-    <img src="images/yeoman.png" alt="I'm Yeoman"><br>
-    Always a pleasure scaffolding your apps.
-  </p>
-  <p><a class="btn btn-lg btn-success" ng-href="#">Splendid!<span class="glyphicon glyphicon-ok"></span></a></p>
-</div>
 
-<div class="row marketing">
-  <h4>HTML5 Boilerplate</h4>
-  <p>
-    HTML5 Boilerplate is a professional front-end template for building fast, robust, and adaptable web apps or sites.
-  </p>
-
-  <h4>Angular</h4>
-  <p>
-    AngularJS is a toolset for building the framework most suited to your application development.
-  </p>
-
-  <h4>Karma</h4>
-  <p>Spectacular Test Runner for JavaScript.</p>
-</div>
+<form name="myForm">
+    <fieldset><legend>Upload on form submit</legend>
+      Profile Picture: <input type="file" ng-file-select="" ng-model="picFile" name="file" accept="image/*" ng-file-change="generateThumb(picFile[0], $files)" required="">
+  <i ng-show="myForm.file.$error.required">*required</i>
+      <br>
+      
+    <button ng-disabled="!myForm.$valid" ng-click="uploadPic(picFile)">Submit</button>
+      <img ng-show="picFile[0].dataUrl != null" ng-src="{{picFile[0].dataUrl}}" class="thumb">
+    <span class="progress" ng-show="picFile[0].progress >= 0">    
+      <div style="width:{{picFile[0].progress}}%" ng-bind="picFile[0].progress + '%'" class="ng-binding"></div>
+    </span> 
+    <span ng-show="picFile[0].result">Upload Successful</span>
+    <h1>All uploaded files</h1>
+    </fieldset>
+  <br>
+</form>
+<img ng-src="{{f.url}}" style="height:200px;width:200px;margin-right:20px;" ng-repeat="f in uploadedFiles">
+      
